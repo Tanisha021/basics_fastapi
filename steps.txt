@@ -1,0 +1,61 @@
+pip3 install fastapi "uvicorn[standard]"
+ python -m pip install fastapi 
+pip install uvicorn  
+
+uvicorn main:app --reload
+
+1.all data validation is handled by pydantic
+2.for debug ctrl+shift+P
+
+3.for doin crud operations
+created a folder blog
+and files
+a) __init__.py
+b)main.py
+
+4.make requirment.txt
+pip3 install -r .\requirements.txt
+
+5.now to run main inside blog
+uvicorn blog.main:app --reload
+
+6.make schemas.py
+put schema class in it
+
+7.make database.py
+for Database connection
+
+8.make models.py
+
+
+9.main.py
+from .import schemas,models
+from database import engine
+
+10.for status 
+import status from fastapi
+and auto complete is there to complete it .. see in main.py
+
+11.make response model
+here response model is actually pydantic schema(we use this if we want to show particular key of schema like hame id show nhi karna tha)
+so go to schema.py
+
+    class ShowBlog(Blog):
+        class Config():
+            orm_model = True
+
+    #in main.py
+    @app.get('/blog/{id}',status_code=200,response_model=schemas.ShowBlog)
+
+    #or
+    @app.get('/blog',response_model=List[schemas.ShowBlog]) //list bcoz sare genreate karne he
+
+12.made endpoints for users
+13.hashed the password of users
+14.made realtionship btw user and blog
+    go to models.py
+    and then schema.py
+
+15.Api routers
+
+
